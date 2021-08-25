@@ -1,0 +1,6 @@
+ALTER TABLE `users`
+CHANGE `type` `type` varchar(255) COLLATE 'utf8mb4_unicode_ci' NOT NULL DEFAULT 'USER' AFTER `password`,
+CHANGE `status` `status` varchar(255) COLLATE 'utf8mb4_unicode_ci' NOT NULL DEFAULT 'ACTIVE' AFTER `type`;
+ALTER TABLE `users`
+ADD `registration_fee_paid` tinyint(1) NOT NULL DEFAULT '0' AFTER `status`,
+ADD `annual_fee_paid` tinyint(1) NOT NULL DEFAULT '0' AFTER `registration_fee_paid`;
