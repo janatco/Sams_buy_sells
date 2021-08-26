@@ -125,4 +125,5 @@ Route::get('send-mail', function () {
 
 // Added by LaHiRu
 Route::get('message-box',[\App\Http\Controllers\MessageController::class,'inbox'])->name('inbox');
-
+Route::view('admin','admin.index');
+Route::view('admin/users','admin.users');
