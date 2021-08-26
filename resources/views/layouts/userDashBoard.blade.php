@@ -18,14 +18,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template-->
-   
+
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    @stack('style')
 </head>
 
 <body id="page-top">
@@ -45,7 +47,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-           
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -105,7 +107,7 @@
                     </div>
                 </div>
             </li>
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -133,7 +135,7 @@
 
             <!-- Nav Item - message Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="{{ route('inbox') }}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fab fa-facebook-messenger"></i>
                     <span> Message Box</span>
                 </a>

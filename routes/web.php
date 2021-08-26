@@ -24,7 +24,7 @@ Route::get('/', function () {
         return redirect('/home');
     }
 
-    
+
 });
 
 Route::get('/blacklisted', function () {
@@ -71,7 +71,7 @@ Route::get('/error', function(){
 });
 
 
-    
+
 Route::get('/admin', [App\Http\Controllers\adminController::class, 'index'])->name('admin');
 Auth::routes(['verify' => true]);
 
@@ -112,14 +112,17 @@ Route::get('/transactions_admin', [App\Http\Controllers\adminController::class, 
 Route::get('/user_feedback_admin', [App\Http\Controllers\adminController::class, 'viewAllComplaints']);
 
 Route::get('send-mail', function () {
-   
+
     $details = [
         'title' => 'Mail from Sams and Sams Title',
         'body' => 'This is for testing email using smtp'
     ];
-   
+
     \Mail::to('janarthanbit@gmail.com')->send(new \App\Mail\MyMail($details));
-   
+
     dd("Email is Sent.");
 });
+
+// Added by LaHiRu
+Route::get('message-box',[\App\Http\Controllers\MessageController::class,'inbox'])->name('inbox');
 
