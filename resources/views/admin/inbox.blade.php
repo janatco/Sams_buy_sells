@@ -31,11 +31,9 @@
         <div class="col-4">
             <h4>Conversations</h4>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action"><b>User Name</b><br>Lorem ipsum dolor sit amet.</a>
-                <a href="#" class="list-group-item list-group-item-action"><b>User Name</b><br>Lorem ipsum dolor sit amet.</a>
-                <a href="#" class="list-group-item list-group-item-action active"><b>User Name</b><br>Lorem ipsum dolor sit amet.</a>
-                <a href="#" class="list-group-item list-group-item-action"><b>User Name</b><br>Lorem ipsum dolor sit amet.</a>
-                <a href="#" class="list-group-item list-group-item-action"><b>User Name</b><br>Lorem ipsum dolor sit amet.</a>
+                @foreach($threads as $t)
+                <a href="{{ route('inbox',$t['id']) }}" class="list-group-item list-group-item-action {{ $t['id'] == $thread ? 'active' : '' }}"><b>{{ $t['name'] ?? "-" }}</b><br>{{ $t['email'] ?? "-" }}</a>
+                @endforeach
             </div>
         </div>
         <div class="col">
@@ -43,19 +41,25 @@
                 <div class="card-header">User Name</div>
                 <div class="card-body">
                     <div class="d-flex flex-column msg-container">
-                        @foreach(range(1,15) as $msg)
-                            <p class="{{ $msg%2 == 0 ? 'msg-in' : 'msg-out' }}">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint.
-                                <br><small class="text-muted">2021-08-26</small>
-                            </p>
-                        @endforeach
+                        @if($messages)
+                            @foreach($messages as $msg)
+                                <p class="{{ $msg->is_sender ? 'msg-out' : 'msg-in' }}">
+                                    {{ $msg->body }}
+                                    <br><small class="text-muted">{{ $msg->created_at }}</small>
+                                </p>
+                            @endforeach
+                        @endif
                     </div>
+                    <form method="post" action="{{ route('message.submit') }}">
+                        @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter message">
+                        <input type="hidden" name="thread_id" value="{{ $thread ?? null }}">
+                        <input autocomplete="off" name="message" type="text" class="form-control" placeholder="Enter message">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Send</button>
+                            <button class="btn btn-outline-secondary" type="submit">Send</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

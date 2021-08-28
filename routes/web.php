@@ -124,6 +124,8 @@ Route::get('send-mail', function () {
 });
 
 // Added by LaHiRu
-Route::get('message-box',[\App\Http\Controllers\MessageController::class,'inbox'])->name('inbox');
-Route::view('admin','admin.index');
-Route::view('admin/users','admin.users');
+Route::get('message-box/{thread?}',[\App\Http\Controllers\MessageController::class,'inbox'])->name('inbox');
+Route::get('message-box/new/{user}',[\App\Http\Controllers\MessageController::class,'createThread'])->name('message.new');
+Route::post('message-box/message-submit',[\App\Http\Controllers\MessageController::class,'submitMessage'])->name('message.submit');
+//Route::view('admin','admin.index');
+//Route::view('admin/users','admin.users');
